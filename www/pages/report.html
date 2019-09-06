@@ -1,0 +1,49 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Quay lại</span>
+          </a>
+        </div>
+        <div class="title">Danh sách đánh giá</div>
+        <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons ios-only">menu</i>
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">Đánh giá đã gửi</div>
+      <div class="block">
+        <div class="list components-list">
+          <ul>
+            {{#each evals}}
+            <li>
+              <a class="item-content item-link">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                    <div class="item-title-row">
+                        <div class="item-title">{{this.fullname}}</div>
+                    </div>
+                    <div class="item-subtitle">{{this.date}}</div>
+                </div>
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    // Component Methods
+    methods: {}
+  }
+</script>
