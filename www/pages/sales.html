@@ -1,0 +1,54 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Quay lại</span>
+          </a>
+        </div>
+        <div class="title">Báo cáo hôm nay</div>
+        <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons ios-only">menu</i>
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">Báo cáo bán hàng</div>
+      <div class="block">
+        <table width="100%">
+          <thead>
+            <tr>
+              <th width="30%" class="label-cell" align="left">BA</th>
+              <th width="35%" class="label-cell" align="left">Sản phẩm</th>
+              <th class="numeric-cell" align="right">SL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sales}}
+            <tr>
+              <td class="label-cell" align="left">{{this.fullname}}</td>
+              <td class="label-cell" align="left">{{this.sku}}</td>
+              <td class="numeric-cell" align="right"><span class="badge color-blue">{{this.buys}}</span></td>
+            </tr>
+            {{else}}
+            <tr>
+              <td class="label-cell text-color-red" colspan="3" align="center" style="padding:10px;">Chưa có báo cáo bán hàng hôm nay</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    // Component Methods
+    methods: {}
+  }
+</script>

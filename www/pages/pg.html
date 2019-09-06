@@ -24,13 +24,23 @@
           <ul>
             {{#each $root.pg}}
             <li>
-              <a class="item-content">
+              <a class="item-content" @click="openPopup('{{this.photo}}')">
                 <div class="item-media"><i class="icon icon-f7"></i></div>
-                  <div class="item-inner">
+                  <div class="item-inner" style="color:#333;">
                       <div class="item-title-row">
-                          <div class="item-title">{{this.fullname}}</div>
+                          <div class="item-title">
+                            {{this.fullname}}
+                            {{#if this.checkin}}
+                            <br/>
+                            <strong>Checkin: <span class="badge badge-blue">{{this.checkin}}</span></strong>
+                            <br/>
+                            <strong>Checkout: <span class="badge badge-green">{{this.checkout}}</span></strong>
+                            {{/if}}
+                          </div>
                       </div>
-                      <div class="item-subtitle">{{this.location}}</div>
+                      <div class="item-subtitle">
+                        {{this.location}}
+                      </div>
                   </div>
               </a>
             </li>
@@ -44,6 +54,24 @@
 <script>
   return {
     // Component Methods
-    methods: {}
+    methods: {
+      openPopup: function (photo) {
+        const self = this;
+        self.popup = self.$app.photoBrowser.create({
+          photos: ['http://pg.liveapps.top/uploads/checkin/' + photo],
+          type: 'popup',
+        });
+        self.popup.open();
+      }
+    },
+    on: {
+      pageInit: function () {
+        const self = this;
+      },
+      pageBeforeRemove: function () {
+        const self = this;
+        self.popup.destroy();
+      }
+    }
   }
 </script>

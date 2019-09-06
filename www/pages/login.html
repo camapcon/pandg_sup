@@ -23,7 +23,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Tên đăng nhập</div>
               <div class="item-input-wrap">
-                <input id="username" type="text" placeholder="Nhập username của Merchandiser">
+                <input id="username" type="text" placeholder="Nhập username của Sup">
                 <span class="input-clear-button"></span>
               </div>
             </div>
@@ -74,7 +74,7 @@
           app.dialog.alert('Vui lòng nhập đủ tên và mật khẩu', 'Báo lỗi');
           return;
         }
-        app.request.post('http://nestle.liveapps.top/index.php/app/login', { username:username, password:password, remember:remember?1:0 }, function (raw) {
+        app.request.post('http://pg.liveapps.top/index.php/app/suplogin', { username:username, password:password, remember:remember?1:0 }, function (raw) {
           try{
             var json = JSON.parse(raw);
             if(json.result=='success'){

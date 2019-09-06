@@ -22,13 +22,91 @@ var routes = [
     componentUrl: './pages/pg.html',
     name: 'pg'
   },
+  {
+    path: '/sales/',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      var token = localStorage.getItem("token");
+      app.request.post('http://pg.liveapps.top/index.php/app/supsales/', { token:token }, function (raw) {
+        if(raw=='invalid'){
+          app.dialog.alert('Phiên làm việc đã hết hạn', 'Thông báo', function(){
+            resolve(
+              {
+                componentUrl: './pages/login.html',
+                name: 'login'
+              }
+            );
+          });
+          return;
+        }
+        try{
+          var json = JSON.parse(raw);
+          resolve(
+            {
+              componentUrl: './pages/sales.html',
+              name: 'sales'
+            },
+            {
+              context: {
+                sales: json.sales
+              }
+            }
+          );
+        }
+        catch(e){
+          app.dialog.alert('Vui lòng cập nhật phiên bản mới', 'Báo lỗi');
+          return;
+        }
+      },function(){
+        app.dialog.alert('Vui lòng kiểm tra lại kết nối', 'Báo lỗi');
+      });
+    }
+  },
+  {
+    path: '/reach/',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      var token = localStorage.getItem("token");
+      app.request.post('http://pg.liveapps.top/index.php/app/supreach/', { token:token }, function (raw) {
+        if(raw=='invalid'){
+          app.dialog.alert('Phiên làm việc đã hết hạn', 'Thông báo', function(){
+            resolve(
+              {
+                componentUrl: './pages/login.html',
+                name: 'login'
+              }
+            );
+          });
+          return;
+        }
+        try{
+          var json = JSON.parse(raw);
+          resolve(
+            {
+              componentUrl: './pages/reach.html',
+              name: 'reach'
+            },
+            {
+              context: {
+                reach: json.reach
+              }
+            }
+          );
+        }
+        catch(e){
+          app.dialog.alert('Vui lòng cập nhật phiên bản mới', 'Báo lỗi');
+          return;
+        }
+      },function(){
+        app.dialog.alert('Vui lòng kiểm tra lại kết nối', 'Báo lỗi');
+      });
+    }
+  },
   // Status page
   {
     path: '/status/',
     async: function (routeTo, routeFrom, resolve, reject) {
       var username = localStorage.getItem("username");
       var token = localStorage.getItem("token");
-      app.request.post('http://nestle.liveapps.top/index.php/app/supstatus/', { username:username, token:token }, function (raw) {
+      app.request.post('http://pg.liveapps.top/index.php/app/supstatus/', { username:username, token:token }, function (raw) {
         if(raw=='invalid'){
           app.dialog.alert('Phiên làm việc đã hết hạn', 'Thông báo', function(){
             resolve(
@@ -80,7 +158,7 @@ var routes = [
     async: function (routeTo, routeFrom, resolve, reject) {
       var username = localStorage.getItem("username");
       var token = localStorage.getItem("token");
-      app.request.post('http://nestle.liveapps.top/index.php/app/evals/', { username:username, token:token }, function (raw) {
+      app.request.post('http://pg.liveapps.top/index.php/app/evals/', { username:username, token:token }, function (raw) {
         if(raw=='invalid'){
           app.dialog.alert('Phiên làm việc đã hết hạn', 'Thông báo', function(){
             resolve(
